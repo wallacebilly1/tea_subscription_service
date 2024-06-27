@@ -33,7 +33,13 @@ RSpec.describe 'API::V1::Subscriptions', type: :request do
       expect(@subscription.tea).to eq(@tea)
     end
 
-    # error handling / testing
+    # it 'returns an error message if an invalid tea id is passed' do
+    #   @body[:tea_id] = 123123
+    #   post '/api/v1/subscriptions', headers: @headers, params: JSON.generate(@body)
+
+    #   expect(response).to_not be_successful
+    #   expect(response.status).to eq(422)
+    # end
   end
 
   describe 'PATCH /api/v1/subscriptions/:id' do
@@ -59,7 +65,11 @@ RSpec.describe 'API::V1::Subscriptions', type: :request do
       expect(@subscription.status).to eq("cancelled")
     end
 
-    # error handling / testing
+    # it 'returns an error message if an invalid subscription id is passed' do
+    #   post '/api/v1/subscriptions/123123', headers: @headers, params: JSON.generate(@body)
+
+    #   expect(response).to_not be_successful
+    #   expect(response.status).to eq(422)
+    # end
   end
-  
 end
