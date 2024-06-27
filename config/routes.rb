@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do 
       resources :subscriptions, only: [:create, :update]
+      resources :customers do
+        get "/subscriptions", to: "customer_subscriptions#index"
+      end
     end
   end
 end
