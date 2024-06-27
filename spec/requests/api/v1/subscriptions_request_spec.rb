@@ -35,4 +35,31 @@ RSpec.describe 'API::V1::Subscriptions', type: :request do
 
     # error handling / testing
   end
+
+  describe 'PATCH /api/v1/subscriptions/:id' do
+    before(:each) do
+      @tea = create(:tea)
+      @customer = create(:customer)
+      @subscription = create(:subscription, tea: @tea, customer: @customer)
+
+      @headers = {"CONTENT_TYPE" => "application/json"}
+      @body = { status: 1 }
+    end
+
+    it 'updates the status of a subscription' do
+      expect(@subscription.status).to eq ("active")
+
+      patch "/api/v1/subscriptions/#{@subscription.id}", headers: @headers, params: JSON.generate(@body)
+
+      expect(response).to be_successful
+      expect(response.status).to eq 200
+
+      @subscription = Subscription.last
+
+      expect(@subscription.status).to eq("cancelled")
+    end
+
+    # error handling / testing
+  end
+  
 end
