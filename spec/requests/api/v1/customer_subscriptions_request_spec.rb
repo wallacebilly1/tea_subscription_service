@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'API::V1::CustomerSubscriptions', type: :request do
-  describe 'GET /api/v1/customer_subscriptions' do
+  describe 'GET /api/v1/customers/:id/subscriptions' do
     before(:each) do
       @customer1 = create(:customer)
       @customer2 = create(:customer)
